@@ -11,8 +11,11 @@
   },
   "dependencies": {
     "@astrojs/tailwind": "^5.1.0",
+    "@astrojs/vue": "^4.5.0",
+    "@vueuse/core": "^10.11.0",
     "astro": "^4.13.1",
-    "tailwindcss": "^3.3.5"
+    "tailwindcss": "^3.3.5",
+    "vue": "^3.4.36"
   },
   "devDependencies": {
     "sass": "^1.69.5"
