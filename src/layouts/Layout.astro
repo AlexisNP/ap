@@ -1,0 +1,42 @@
+--- 
+import '../../assets/css/main.css';
+
+interface Props {
+	title?: string;
+}
+
+const { title } = Astro.props;
+
+let renderedTitle
+const baseTitle = 'Alexis Pelé - Ingénieur web breton'
+
+if (title) {
+  renderedTitle = `${title} · ${baseTitle}`
+} else {
+  renderedTitle = baseTitle
+}
+---
+
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="description" content="Astro description">
+		<meta name="viewport" content="width=device-width" />
+  
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<meta name="generator" content={ Astro.generator } />
+
+		<title>{ renderedTitle }</title>
+	</head>
+
+	<body class="bg-stone-50">
+		<div class="container transition-all">
+      <div class="h-screen py-12 px-24 shadow-sm bg-white">
+        <div class="mt-32">
+          <slot />
+        </div>
+      </div>
+    </div>
+	</body>
+</html>

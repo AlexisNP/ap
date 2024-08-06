@@ -1,3 +1,23 @@
+@import url('https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,300;0,500;0,700;1,300;1,500;1,700&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+body {
+  font-family:
+    'Public Sans', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  font-weight: 300;
+}
+
+@layer components {
+  .h-screen-n {
+    @apply min-h-screen pt-16
+  }
+}
+
+@layer utilities {
+  .flow > * + * {
+    margin-top: .5em;
+  }
+}

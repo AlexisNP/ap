@@ -1,0 +1,23 @@
+---
+interface Props {
+	tag: 'h1' | 'h2' | 'h3';
+}
+
+const { tag = "h1" } = Astro.props;
+---
+
+{tag === 'h1' &&
+  <h1 class="font-heading text-5xl font-bold">
+    <slot />
+  </h1>
+}
+{tag === 'h2' &&
+  <h1 class="font-heading text-3xl font-bold">
+    <slot />
+  </h1>
+}
+{tag === 'h3' &&
+  <h1 class="font-heading text-xl font-bold">
+    <slot />
+  </h1>
+}
