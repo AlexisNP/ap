@@ -1,0 +1,60 @@
+<button class="relative py-2 px-6 bg-slate-900 rounded-[100vmax] text-sm">
+  <slot />
+</button>
+
+<style lang="scss">
+:root {
+  --stop-1: #022c22;
+  --stop-2: #34d399;
+  --stop-3: #ecfdf5;
+}
+
+@property --gradient-angle {
+  syntax: "<angle>";
+  initial-value: 0deg;
+  inherits: false;
+}
+
+button::before,
+button::after {
+  content: "";
+  position: absolute;
+  inset: -1px;
+  z-index: -1;
+  background: conic-gradient(
+    from var(--gradient-angle),
+    var(--stop-1),
+    var(--stop-1),
+    var(--stop-1),
+    var(--stop-1),
+    var(--stop-1),
+    var(--stop-1),
+    var(--stop-1),
+    var(--stop-2),
+    var(--stop-3),
+    var(--stop-2),
+    var(--stop-1),
+    var(--stop-1),
+    var(--stop-1),
+    var(--stop-1),
+    var(--stop-1),
+    var(--stop-1),
+    var(--stop-1)
+  );
+  border-radius: inherit;
+  animation: rotation 4.2s cubic-bezier(0.785, 0.135, 0.15, 0.86) infinite;
+}
+
+button::after {
+  filter: blur(3.5rem);
+}
+
+@keyframes rotation {
+  0% {
+    --gradient-angle: -180deg;
+  }
+  100% {
+    --gradient-angle: 180deg;
+  }
+}
+</style>

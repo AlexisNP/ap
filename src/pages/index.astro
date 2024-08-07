@@ -1,14 +1,27 @@
 ---
+import Button from '../components/Button.astro';
 import Heading from '../components/Heading.astro';
 import Layout from '../layouts/Layout.astro';
 ---
 
 <Layout>
   <main>
-    <section class="relative h-screen overflow-clip">
-      <Heading tag="h1">
-        Titre
-      </Heading>
+    <section class="relative h-screen overflow-clip max-w-full">
+      <div class="h-full container grid place-items-center auto-rows-auto">
+        <div class="max-w-2xl grid gap-2 text-center">
+          <Heading tag="h1">
+            Titre
+          </Heading>
+  
+          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam sint placeat dolores nemo asperiores minus, quam commodi cum?</p>
+
+          <div>
+            <Button>
+              Test
+            </Button>
+          </div>
+        </div>
+      </div>
 
       <div class="absolute inset-0 -z-30 isolate">
         <div id="spotlight-filter"></div>
@@ -21,11 +34,13 @@ import Layout from '../layouts/Layout.astro';
       </div>
 
       <div
-        class="absolute inset-0 -z-10 isolate grid place-items-center pointer-events-none"
+        id="grid-bg-wrapper"
+        class="absolute -inset-full -z-10 isolate grid place-items-center pointer-events-none"
       >
         <svg
+          id="grid-bg"
           class="col-start-1 row-start-1 w-full h-full opacity-20" xmlns="http://www.w3.org/2000/svg"
-          style="mask-image: radial-gradient(circle at center, black 0%, transparent 80%);"
+          style="mask-image: radial-gradient(circle at center, black 0%, black 5%, transparent 35%);"
         >
           <defs>
             <pattern id="grid" width="38" height="38" patternUnits="userSpaceOnUse">
@@ -66,6 +81,10 @@ if (shape || spotlight) {
 </script>
 
 <style lang="scss">
+#grid-bg {
+  transform: scaleY(0.7) skewX(-24deg) skewY(12deg);
+}
+
 @keyframes shape-spin {
   from {
     rotate: 0deg;
