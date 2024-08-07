@@ -25,13 +25,13 @@ import Layout from '../layouts/Layout.astro';
 
       <div class="absolute inset-0 -z-30 isolate">
         <div id="shape-filter"></div>
-        <div id="shape" class="bg-gradient-to-tr from-emerald-500 from-35% via-indigo-500 via-70% to-fuchsia-500 to-100% opacity-20"></div>
-        <div id="spotlight" class="bg-gradient-to-tr from-lime-500 from-35% via-green-500 via-70% to-emerald-500 to-100% opacity-40"></div>
+        <div id="shape" class="bg-gradient-to-tr from-emerald-500 from-35% via-indigo-500 via-70% to-fuchsia-500 to-100% opacity-20 contrast-more:opacity-15"></div>
+        <div id="spotlight" class="bg-gradient-to-tr from-lime-500 from-35% via-green-500 via-70% to-emerald-500 to-100% opacity-40 contrast-more:opacity-25"></div>
       </div>
 
       <div
         id="grid-bg-wrapper"
-        class="absolute -inset-full -z-10 isolate grid place-items-center pointer-events-none"
+        class="contrast-more:hidden absolute -inset-full -z-10 isolate grid place-items-center pointer-events-none"
       >
         <svg
           id="grid-bg"
@@ -55,24 +55,30 @@ import Layout from '../layouts/Layout.astro';
 const shape = document.getElementById('shape');
 const spotlight = document.getElementById('spotlight');
 
+/** Whether the user doesn't want extra motion in the page */
+const userReduceMotions = window.matchMedia("(prefers-reduced-motion)");
+
 /**
- * 
- * @param {PointerEvent} event - The event to pass the function
+ * Update the spotlights positions on the page
+ *
+ * @param PointerEvent event - The event to pass the function
  */
 function updateSpotlights(event) {
+  if (userReduceMotions.matches) return;
+
   const { clientX, clientY } = event;
+  const yOffset = clientY - window.innerHeight / 2
+  const xOffset = clientX - window.innerWidth / 2
 
   if (shape) {
     shape.animate({
-      left: `${clientX}px`,
-      top: `${clientY}px`
-    }, { duration: 2500, fill: "forwards" });
+      transform: `translateX(calc(-50% + ${xOffset}px)) translateY(calc(-50% + ${yOffset}px))`
+    }, { duration: 2500, fill: "forwards", easing: "ease-in-out" });
   }
 
   if (spotlight) {
     spotlight.animate({
-      left: `calc(33% + ${clientX / 3}px)`,
-      top: `calc(33% + ${clientY / 3}px)`
+      transform: `translateX(calc(-50% + ${xOffset / 3}px)) translateY(calc(-50% + ${yOffset / 3}px))`
     }, { duration: 2500, fill: "forwards", easing: "ease-in-out" });
   }
 }
@@ -86,11 +92,10 @@ function throttle(cb, wait = 100) {
   }
 }
 
-document.addEventListener('pointermove', throttle((event) => {
-  console.log("proced")
+// Add throttled event listener on the body
+document.addEventListener('mousemove', throttle((event) => {
   requestAnimationFrame(updateSpotlights.bind(updateSpotlights, event))
 }));
-
 </script>
 
 <style lang="scss">
@@ -99,14 +104,8 @@ document.addEventListener('pointermove', throttle((event) => {
 }
 
 @keyframes shape-spin {
-  from {
-    rotate: 0deg;
-  }
   50% {
     scale: 1 1.2;
-  }
-  to {
-    rotate: 360deg;
   }
 }
 
@@ -124,9 +123,10 @@ document.addEventListener('pointermove', throttle((event) => {
   position: absolute;
   left: 50%;
   top: 50%;
-  translate: -50% -50%;
+  transform: translateX(-50%) translateY(-50%);
   border-radius: 50%;
   aspect-ratio: 1;
   animation: shape-spin 13s infinite;
+  will-change: transform, scroll-position;
 }
 </style>
