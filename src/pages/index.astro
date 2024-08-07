@@ -24,13 +24,9 @@ import Layout from '../layouts/Layout.astro';
       </div>
 
       <div class="absolute inset-0 -z-30 isolate">
-        <div id="spotlight-filter"></div>
-        <div id="spotlight" class="bg-gradient-to-tr from-lime-500 from-35% via-green-500 via-70% to-emerald-500 to-100% opacity-50"></div>
-      </div>
-
-      <div class="absolute inset-0 -z-20 isolate">
         <div id="shape-filter"></div>
         <div id="shape" class="bg-gradient-to-tr from-emerald-500 from-35% via-indigo-500 via-70% to-fuchsia-500 to-100% opacity-20"></div>
+        <div id="spotlight" class="bg-gradient-to-tr from-lime-500 from-35% via-green-500 via-70% to-emerald-500 to-100% opacity-40"></div>
       </div>
 
       <div
@@ -67,14 +63,14 @@ if (shape || spotlight) {
       shape.animate({
         left: `${clientX}px`,
         top: `${clientY}px`
-      }, { duration: 1500, fill: "forwards" })
+      }, { duration: 2500, fill: "forwards" })
     }
 
     if (spotlight) {
       spotlight.animate({
         left: `calc(33% + ${clientX / 3}px)`,
         top: `calc(33% + ${clientY / 3}px)`
-      }, { duration: 1500, fill: "forwards" })
+      }, { duration: 2500, fill: "forwards" })
     }
   }, { passive: true })
 }
@@ -97,13 +93,12 @@ if (shape || spotlight) {
   }
 }
 
-#shape-filter,
-#spotlight-filter {
+#shape-filter {
   height: 100%;
   width: 100%;
   position: absolute;
   z-index: 2;
-  backdrop-filter: blur(12vmax);
+  backdrop-filter: blur(10vmax);
 }
 
 #shape,
