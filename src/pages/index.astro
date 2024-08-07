@@ -10,13 +10,23 @@ import Layout from '../layouts/Layout.astro';
         Titre
       </Heading>
 
-      <div class="absolute inset-0 -z-20 isolate">
-        <div id="shape-filter"></div>
-        <div id="shape" class="bg-gradient-to-tr from-emerald-500 from-35% via-indigo-500 via-70% to-fuchsia-500 to-100% opacity-30"></div>
+      <div class="absolute inset-0 -z-30 isolate">
+        <div id="spotlight-filter"></div>
+        <div id="spotlight" class="bg-gradient-to-tr from-lime-500 from-35% via-green-500 via-70% to-emerald-500 to-100% opacity-50"></div>
       </div>
 
-      <div class="absolute inset-0 -z-10 isolate grid place-items-center pointer-events-none" style="mask-image: radial-gradient(black, transparent);">
-        <svg class="col-start-1 row-start-1 opacity-15" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
+      <div class="absolute inset-0 -z-20 isolate">
+        <div id="shape-filter"></div>
+        <div id="shape" class="bg-gradient-to-tr from-emerald-500 from-35% via-indigo-500 via-70% to-fuchsia-500 to-100% opacity-20"></div>
+      </div>
+
+      <div
+        class="absolute inset-0 -z-10 isolate grid place-items-center pointer-events-none"
+      >
+        <svg
+          class="col-start-1 row-start-1 w-full h-full opacity-20" xmlns="http://www.w3.org/2000/svg"
+          style="mask-image: radial-gradient(circle at center, black 0%, transparent 80%);"
+        >
           <defs>
             <pattern id="grid" width="38" height="38" patternUnits="userSpaceOnUse">
               <path d="M 100 0 L 0 0 0 38" fill="none" stroke="white" stroke-width="1"/>
@@ -32,16 +42,26 @@ import Layout from '../layouts/Layout.astro';
 
 <script>
 const shape = document.getElementById('shape')
+const spotlight = document.getElementById('spotlight')
 
-if (shape) {
+if (shape || spotlight) {
   document.addEventListener('pointermove', (event) => {
     const { clientX, clientY } = event;
 
-    shape.animate({
-      left: `${clientX}px`,
-      top: `${clientY}px`
-    }, { duration: 1500, fill: "forwards" })
-  })
+    if (shape) {
+      shape.animate({
+        left: `${clientX}px`,
+        top: `${clientY}px`
+      }, { duration: 1500, fill: "forwards" })
+    }
+
+    if (spotlight) {
+      spotlight.animate({
+        left: `calc(33% + ${clientX / 3}px)`,
+        top: `calc(33% + ${clientY / 3}px)`
+      }, { duration: 1500, fill: "forwards" })
+    }
+  }, { passive: true })
 }
 </script>
 
@@ -51,14 +71,15 @@ if (shape) {
     rotate: 0deg;
   }
   50% {
-    scale: 1 1.5;
+    scale: 1 1.2;
   }
   to {
     rotate: 360deg;
   }
 }
 
-#shape-filter {
+#shape-filter,
+#spotlight-filter {
   height: 100%;
   width: 100%;
   position: absolute;
@@ -66,7 +87,8 @@ if (shape) {
   backdrop-filter: blur(12vmax);
 }
 
-#shape {
+#shape,
+#spotlight {
   height: 30vmax;
   position: absolute;
   left: 50%;
@@ -74,9 +96,6 @@ if (shape) {
   translate: -50% -50%;
   border-radius: 50%;
   aspect-ratio: 1;
-}
-
-#shape {
-  animation: shape-spin 17s infinite;
+  animation: shape-spin 13s infinite;
 }
 </style>
