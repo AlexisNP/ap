@@ -8,16 +8,16 @@ const { tag = "h1" } = Astro.props;
 
 {tag === 'h1' &&
   <h1 class="font-heading text-5xl font-bold">
-    <slot />
+    <slot name="default" />
   </h1>
 }
 {tag === 'h2' &&
-  <h1 class="font-heading text-3xl font-bold">
-    <slot />
-  </h1>
+  <h2 class="font-heading text-3xl font-bold">
+    <slot name="default" />
+  </h2>
 }
 {tag === 'h3' &&
-  <h1 class="font-heading text-xl font-bold">
-    <slot />
-  </h1>
+  <h3 class="font-heading text-xl font-bold">
+    <slot name="default" />
+  </h3>
 }

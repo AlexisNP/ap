@@ -1,23 +1,42 @@
 ---
 interface Props {
+  href?: string;
   glow?: boolean;
 }
 
-const { glow = false } = Astro.props;
+const { glow = false, href } = Astro.props;
 ---
 
-<button
-  class="relative py-2 px-6 flex items-center gap-[0.5ch] rounded-[100vmax] text-sm bg-slate-900 hover:bg-slate-800 transition-colors"
-  class:list={
-    [
-      {
-        'glow': glow
-      }
-    ]
-  }
->
-  <slot />
-</button>
+{href && (
+  <a
+    class="relative py-2 px-7 flex items-center gap-[0.5ch] rounded-[100vmax] text-[1em] bg-slate-900 hover:bg-slate-800 transition-colors"
+    href={href}
+    target="_blank"
+    class:list={
+      [
+        {
+          'glow': glow
+        }
+      ]
+    }
+  >
+    <slot />
+  </a>
+)}
+{!href && (
+  <button
+    class="relative py-2 px-7 flex items-center gap-[0.5ch] rounded-[100vmax] text-[1em] bg-slate-900 hover:bg-slate-800 hover:border-slate-800 transition-colors"
+    class:list={
+      [
+        {
+          'glow': glow
+        }
+      ]
+    }
+  >
+    <slot />
+  </button>
+)}
 
 <style lang="scss">
 :root {
@@ -32,7 +51,7 @@ const { glow = false } = Astro.props;
   inherits: false;
 }
 
-button.glow {
+.glow {
   &::before,
   &::after {
     content: "";

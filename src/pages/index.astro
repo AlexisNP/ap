@@ -1,141 +1,22 @@
 ---
-import Button from '../components/Button.astro';
 import Heading from '../components/Heading.astro';
+import Hero from '../components/home/Hero.astro';
+import Tooling from '../components/home/Tooling.astro';
 import Layout from '../layouts/Layout.astro';
 ---
 
 <Layout>
   <main>
-    <section class="relative h-screen overflow-clip max-w-full">
-      <div class="h-full container grid place-items-center auto-rows-auto">
-        <div class="max-w-2xl grid gap-2 text-center">
-          <Heading tag="h1">
-            Titre
-          </Heading>
-  
-          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam sint placeat dolores nemo asperiores minus, quam commodi cum?</p>
+    <Hero>
+      <Heading tag="h1">
+        Titre
+      </Heading>
 
-          <div class="flex items-center justify-center gap-2">
-            <Button glow>
-              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#FFF" viewBox="0 0 256 256">
-                <path d="M208.31,75.68A59.78,59.78,0,0,0,202.93,28,8,8,0,0,0,196,24a59.75,59.75,0,0,0-48,24H124A59.75,59.75,0,0,0,76,24a8,8,0,0,0-6.93,4,59.78,59.78,0,0,0-5.38,47.68A58.14,58.14,0,0,0,56,104v8a56.06,56.06,0,0,0,48.44,55.47A39.8,39.8,0,0,0,96,192v8H72a24,24,0,0,1-24-24A40,40,0,0,0,8,136a8,8,0,0,0,0,16,24,24,0,0,1,24,24,40,40,0,0,0,40,40H96v16a8,8,0,0,0,16,0V192a24,24,0,0,1,48,0v40a8,8,0,0,0,16,0V192a39.8,39.8,0,0,0-8.44-24.53A56.06,56.06,0,0,0,216,112v-8A58.14,58.14,0,0,0,208.31,75.68ZM200,112a40,40,0,0,1-40,40H112a40,40,0,0,1-40-40v-8a41.74,41.74,0,0,1,6.9-22.48A8,8,0,0,0,80,73.83a43.81,43.81,0,0,1,.79-33.58,43.88,43.88,0,0,1,32.32,20.06A8,8,0,0,0,119.82,64h32.35a8,8,0,0,0,6.74-3.69,43.87,43.87,0,0,1,32.32-20.06A43.81,43.81,0,0,1,192,73.83a8.09,8.09,0,0,0,1,7.65A41.72,41.72,0,0,1,200,104Z" />
-              </svg>
+      <p>
+        Test
+      </p>
+    </Hero>
 
-              <span>
-                Github
-              </span>
-            </Button>
-
-            <Button>
-              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#FFF" viewBox="0 0 256 256">
-                <path d="M132,24A100.11,100.11,0,0,0,32,124v84a16,16,0,0,0,16,16h84a100,100,0,0,0,0-200Zm0,184H48V124a84,84,0,1,1,84,84Zm12-80a12,12,0,1,1-12-12A12,12,0,0,1,144,128Zm-44,0a12,12,0,1,1-12-12A12,12,0,0,1,100,128Zm88,0a12,12,0,1,1-12-12A12,12,0,0,1,188,128Z" />
-              </svg>
-
-              <span>
-                Contact
-              </span>
-            </Button>
-          </div>
-        </div>
-      </div>
-
-      <div class="absolute inset-0 -z-30 isolate">
-        <div id="shape-filter" class="h-full w-full relative z-10"></div>
-        <div id="shape" class="rounded-full aspect-square bg-gradient-to-tr from-emerald-500 from-35% via-indigo-500 via-70% to-fuchsia-500 to-100% opacity-20 contrast-more:opacity-15 will-change-transform"></div>
-        <div id="spotlight" class="rounded-full aspect-square bg-gradient-to-tr from-lime-500 from-35% via-green-500 via-70% to-emerald-500 to-100% opacity-40 contrast-more:opacity-25 will-change-transform"></div>
-      </div>
-
-      <div
-        id="grid-bg-wrapper"
-        class="contrast-more:hidden absolute -inset-full -z-10 isolate grid place-items-center pointer-events-none"
-      >
-        <svg
-          id="grid-bg"
-          class="col-start-1 row-start-1 w-full h-full opacity-20" xmlns="http://www.w3.org/2000/svg"
-          style="mask-image: radial-gradient(circle at center, black 0%, black 5%, transparent 35%);"
-        >
-          <defs>
-            <pattern id="grid" width="38" height="38" patternUnits="userSpaceOnUse">
-              <path d="M 100 0 L 0 0 0 38" fill="none" stroke="white" stroke-width="1"/>
-            </pattern>
-          </defs>
-        
-          <rect width="100%" height="100%" fill="url(#grid)" />
-        </svg>
-      </div>
-    </section>
+    <Tooling />
   </main>
 </Layout>
-
-<script>
-const shape = document.getElementById('shape');
-const spotlight = document.getElementById('spotlight');
-
-/** Whether the user doesn't want extra motion in the page */
-const userReduceMotions = window.matchMedia("(prefers-reduced-motion)");
-
-/**
- * Update the spotlights positions on the page
- *
- * @param PointerEvent event - The event to pass the function
- */
-function updateSpotlights(event) {
-  if (userReduceMotions.matches) return;
-
-  const { clientX, clientY } = event;
-  const yOffset = clientY - window.innerHeight / 2
-  const xOffset = clientX - window.innerWidth / 2
-
-  if (shape) {
-    shape.animate({
-      transform: `translateX(calc(-50% + ${xOffset}px)) translateY(calc(-50% + ${yOffset}px))`
-    }, { duration: 2500, fill: "forwards", easing: "ease-in-out" });
-  }
-
-  if (spotlight) {
-    spotlight.animate({
-      transform: `translateX(calc(-50% + ${xOffset / 3}px)) translateY(calc(-50% + ${yOffset / 3}px))`
-    }, { duration: 2500, fill: "forwards", easing: "ease-in-out" });
-  }
-}
-
-// Throttles the animation to avoid performance issues
-function throttle(cb, wait = 100) {
-  let timeout
-  return function(e) {
-    if (timeout) return;
-    timeout = setTimeout(() => (cb(e), timeout=undefined), wait)
-  }
-}
-
-// Add throttled event listener on the body
-document.addEventListener('mousemove', throttle((event) => {
-  requestAnimationFrame(updateSpotlights.bind(updateSpotlights, event))
-}));
-</script>
-
-<style lang="scss">
-#grid-bg {
-  transform: scaleY(0.7) skewX(-24deg) skewY(12deg);
-}
-
-@keyframes shape-spin {
-  50% {
-    scale: 1 1.2;
-  }
-}
-
-#shape-filter {
-  backdrop-filter: blur(10vmax);
-}
-
-#shape,
-#spotlight {
-  height: 30vmax;
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  transform: translateX(-50%) translateY(-50%);
-  animation: shape-spin 13s infinite;
-}
-</style>
