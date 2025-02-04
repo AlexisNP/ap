@@ -5,16 +5,26 @@ import Heading from "../Heading.astro";
 
 <section id="hero" class="relative h-screen overflow-clip max-w-full">
   <div class="h-full container grid place-items-center auto-rows-auto">
-    <div class="max-w-2xl flow text-center">
+    <div class="max-w-2xl text-center">
       <Heading tag="h1">
         Hello, I'm Alexis !
       </Heading>
 
-      <p>
-        Let's build something cool together
-      </p>
+      <div class="mt-4">
+        <p class="text-xl">
+          I'm a front-end engineer and all-around web enthusiast.
+        </p>
+      </div>
 
-      <div class="flex items-center justify-center gap-2">
+      <hr class="my-4 w-12 mx-auto border-none h-[.33rem] rounded-[100vmax] bg-gradient-to-b from-emerald-500 to-emerald-600" />
+
+      <div>
+        <p class="text-xl">
+          Let's build something cool together :)
+        </p>
+      </div>
+
+      <div class="mt-8 flex items-center justify-center gap-2 md:gap-4">
         <Button href="https://github.com/AlexisNP" glow>
           <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#FFF" viewBox="0 0 256 256">
             <path d="M208.31,75.68A59.78,59.78,0,0,0,202.93,28,8,8,0,0,0,196,24a59.75,59.75,0,0,0-48,24H124A59.75,59.75,0,0,0,76,24a8,8,0,0,0-6.93,4,59.78,59.78,0,0,0-5.38,47.68A58.14,58.14,0,0,0,56,104v8a56.06,56.06,0,0,0,48.44,55.47A39.8,39.8,0,0,0,96,192v8H72a24,24,0,0,1-24-24A40,40,0,0,0,8,136a8,8,0,0,0,0,16,24,24,0,0,1,24,24,40,40,0,0,0,40,40H96v16a8,8,0,0,0,16,0V192a24,24,0,0,1,48,0v40a8,8,0,0,0,16,0V192a39.8,39.8,0,0,0-8.44-24.53A56.06,56.06,0,0,0,216,112v-8A58.14,58.14,0,0,0,208.31,75.68ZM200,112a40,40,0,0,1-40,40H112a40,40,0,0,1-40-40v-8a41.74,41.74,0,0,1,6.9-22.48A8,8,0,0,0,80,73.83a43.81,43.81,0,0,1,.79-33.58,43.88,43.88,0,0,1,32.32,20.06A8,8,0,0,0,119.82,64h32.35a8,8,0,0,0,6.74-3.69,43.87,43.87,0,0,1,32.32-20.06A43.81,43.81,0,0,1,192,73.83a8.09,8.09,0,0,0,1,7.65A41.72,41.72,0,0,1,200,104Z" />
@@ -44,12 +54,12 @@ import Heading from "../Heading.astro";
   >
     <svg
       id="grid-bg"
-      class="col-start-1 row-start-1 w-full h-full opacity-20" xmlns="http://www.w3.org/2000/svg"
+      class="col-start-1 row-start-1 w-full h-full opacity-50" xmlns="http://www.w3.org/2000/svg"
       style="mask-image: radial-gradient(circle at center, black 0%, black 5%, transparent 28%);"
     >
       <defs>
         <pattern id="grid" width="38" height="38" patternUnits="userSpaceOnUse">
-          <path d="M 100 0 L 0 0 0 38" fill="none" stroke="white" stroke-width="1"/>
+          <path d="M 100 0 L 0 0 0 38" class="stroke-emerald-500 contrast-more:stroke-emerald-700" fill="none" stroke-width="1"/>
         </pattern>
       </defs>
     
@@ -67,20 +77,6 @@ import Heading from "../Heading.astro";
     50% {
       scale: 1 1.2;
     }
-  }
-  
-  #shape-filter {
-    backdrop-filter: blur(10vmax);
-  }
-  
-  #shape,
-  #spotlight {
-    height: 30vmax;
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    transform: translateX(-50%) translateY(-50%);
-    animation: shape-spin 13s infinite;
   }
 </style>
   
