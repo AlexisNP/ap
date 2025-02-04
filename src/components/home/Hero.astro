@@ -1,11 +1,18 @@
 ---
 import Button from "../Button.astro";
+import Heading from "../Heading.astro";
 ---
 
 <section id="hero" class="relative h-screen overflow-clip max-w-full">
   <div class="h-full container grid place-items-center auto-rows-auto">
     <div class="max-w-2xl flow text-center">
-      <slot />
+      <Heading tag="h1">
+        Hello, I'm Alexis !
+      </Heading>
+
+      <p>
+        Let's build something cool together
+      </p>
 
       <div class="flex items-center justify-center gap-2">
         <Button href="https://github.com/AlexisNP" glow>
@@ -31,12 +38,6 @@ import Button from "../Button.astro";
     </div>
   </div>
 
-  <div class="absolute inset-0 -z-30 isolate">
-    <div id="shape-filter" class="h-full w-full relative z-10"></div>
-    <div id="shape" class="rounded-full aspect-square bg-gradient-to-tr from-emerald-500 from-35% via-indigo-500 via-70% to-fuchsia-500 to-100% opacity-20 contrast-more:opacity-15 will-change-transform"></div>
-    <div id="spotlight" class="rounded-full aspect-square bg-gradient-to-tr from-lime-500 from-35% via-green-500 via-70% to-emerald-500 to-100% opacity-40 contrast-more:opacity-25 will-change-transform"></div>
-  </div>
-
   <div
     id="grid-bg-wrapper"
     class="contrast-more:hidden absolute -inset-full -z-10 isolate grid place-items-center pointer-events-none"
@@ -56,71 +57,6 @@ import Button from "../Button.astro";
     </svg>
   </div>
 </section>
-
-<script>
-  const hero = document.getElementById('hero');
-  const shape = document.getElementById('shape');
-  const spotlight = document.getElementById('spotlight');
-  
-  /** Whether the user doesn't want extra motion in the page */
-  const userReduceMotions = window.matchMedia("(prefers-reduced-motion)");
-  
-  /**
-   * Update the spotlights positions on the page
-   *
-   * @param PointerEvent event - The event to pass the function
-   */
-  function updateSpotlights(event) {
-    if (userReduceMotions.matches) return;
-  
-    const { clientX, clientY } = event;
-    const yOffset = clientY - window.innerHeight / 2
-    const xOffset = clientX - window.innerWidth / 2
-  
-    if (shape) {
-      shape.animate({
-        transform: `translateX(calc(-50% + ${xOffset}px)) translateY(calc(-50% + ${yOffset}px))`
-      }, { duration: 2500, fill: "forwards", easing: "ease-in-out" });
-    }
-  
-    if (spotlight) {
-      spotlight.animate({
-        transform: `translateX(calc(-50% + ${xOffset / 3}px)) translateY(calc(-50% + ${yOffset / 3}px))`
-      }, { duration: 2500, fill: "forwards", easing: "ease-in-out" });
-    }
-  }
-  
-  // Throttles the animation to avoid performance issues
-  function throttle(cb, wait = 40) {
-    let timeout
-    return function(e) {
-      if (timeout) return;
-      timeout = setTimeout(() => (cb(e), timeout=undefined), wait)
-    }
-  }
-  
-  // Add throttled event listener on the body
-  hero!.addEventListener('mousemove', throttle((event) => {  
-    requestAnimationFrame(updateSpotlights.bind(updateSpotlights, event))
-  }));
-  
-  // window.addEventListener('blur', turnSpotlightsOff);
-  // window.addEventListener('focus', turnSpotlightsOn);
-  
-  // function turnSpotlightsOff() {
-  //   shape?.classList.add('invisible');
-  //   spotlight?.classList.add('invisible');
-  //   shape?.classList.remove('visible');
-  //   spotlight?.classList.remove('visible');
-  // }
-  
-  // function turnSpotlightsOn() {
-  //   shape?.classList.remove('invisible');
-  //   spotlight?.classList.remove('invisible');
-  //   shape?.classList.add('visible');
-  //   spotlight?.classList.add('visible');
-  // }
-</script>
   
 <style lang="scss">
   #grid-bg {
