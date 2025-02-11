@@ -1,21 +1,24 @@
 ---
 interface Props {
+  variant?: 'primary' | 'secondary' | 'tertiary';
   href?: string;
   glow?: boolean;
 }
 
-const { glow = false, href } = Astro.props;
+const { variant = 'secondary', glow = false, href } = Astro.props;
 ---
 
 {href && (
   <a
-    class="relative py-2 px-7 flex items-center gap-[0.5ch] rounded-[100vmax] text-[1em] bg-slate-900 hover:bg-slate-800 transition-colors"
+    class="relative py-2 px-7 flex items-center gap-[0.5ch] rounded-[100vmax] text-[1em] transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4"
     href={href}
     target="_blank"
     class:list={
       [
         {
-          'glow': glow
+          'glow': glow,
+          'bg-emerald-900 hover:bg-emerald-800 focus-visible:outline-emerald-400': variant === 'primary',
+          'bg-slate-900 hover:bg-slate-800 focus-visible:outline-slate-100': variant === 'secondary'
         }
       ]
     }
@@ -25,11 +28,13 @@ const { glow = false, href } = Astro.props;
 )}
 {!href && (
   <button
-    class="relative py-2 px-7 flex items-center gap-[0.5ch] rounded-[100vmax] text-[1em] bg-slate-900 hover:bg-slate-800 hover:border-slate-800 transition-colors"
+    class="relative py-2 px-7 flex items-center gap-[0.5ch] rounded-[100vmax] text-[1em] transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4"
     class:list={
       [
         {
-          'glow': glow
+          'glow': glow,
+          'bg-emerald-900 hover:bg-emerald-800 focus-visible:outline-emerald-400': variant === 'primary',
+          'bg-slate-900 hover:bg-slate-800 focus-visible:outline-slate-100': variant === 'secondary'
         }
       ]
     }
