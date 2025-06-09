@@ -7,17 +7,17 @@ const { tag = "h1" } = Astro.props;
 ---
 
 {tag === 'h1' &&
-  <h1 class="font-heading text-5xl font-bold">
+  <h1 class="font-heading text-4xl md:text-5xl font-bold">
     <slot name="default" />
   </h1>
 }
 {tag === 'h2' &&
-  <h2 class="font-heading text-3xl font-bold">
+  <h2 class="font-heading text-xl md:text-3xl font-bold">
     <slot name="default" />
   </h2>
 }
 {tag === 'h3' &&
-  <h3 class="font-heading text-xl font-bold">
+  <h3 class="font-heading md:text-xl font-bold">
     <slot name="default" />
   </h3>
 }
