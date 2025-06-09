@@ -10,10 +10,12 @@
     "astro": "astro"
   },
   "dependencies": {
+    "@astrojs/sitemap": "^3.4.1",
     "@astrojs/tailwind": "^6.0.2",
     "@astrojs/vue": "^5.1.0",
     "@vueuse/core": "^12.8.2",
     "astro": "^5.9.2",
+    "astro-compressor": "^1.0.0",
     "scrambling-text": "^1.2.0",
     "swiper": "^11.2.8",
     "tailwindcss": "^3.4.17",
