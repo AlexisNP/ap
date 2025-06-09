@@ -75,6 +75,35 @@ const { description = baseTitle } = Astro.props;
     <meta name="twitter:domain" content="alexcreates.fr" />
 
     <meta property="og:type" content="website" />
+
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "email": "mailto:contact@alexcreates.fr",
+        "jobTitle": "Web developer",
+        "name": "Alexis",
+        "familyName": "Pelé",
+        "url": "https://alexcreates.fr/",
+        "nationality": {
+          "@type": "Country",
+          "name": "France"
+        },
+        "pronouns": "he/him",
+        "knowsLanguage": [
+          {
+            "@type": "Language",
+            "name": "French",
+            "alternateName": "fr"
+          },
+          {
+            "@type": "Language",
+            "name": "English",
+            "alternateName": "en"
+          },
+        ]
+      }
+    </script>
 	</head>
 
 	<body class="bg-slate-950 text-white">
