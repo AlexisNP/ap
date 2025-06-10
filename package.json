@@ -11,14 +11,13 @@
   },
   "dependencies": {
     "@astrojs/sitemap": "^3.4.1",
-    "@astrojs/tailwind": "^6.0.2",
     "@astrojs/vue": "^5.1.0",
+    "@tailwindcss/vite": "^4.1.8",
     "@vueuse/core": "^13.3.0",
     "astro": "^5.9.2",
     "astro-compressor": "^1.0.0",
-    "scrambling-text": "^1.2.0",
     "swiper": "^11.2.8",
-    "tailwindcss": "^3.4.17",
+    "tailwindcss": "^4.1.8",
     "vue": "^3.5.16"
   },
   "devDependencies": {
