@@ -1,7 +1,8 @@
 --- 
-import '../../assets/css/main.css';
-import BgParticles from '../components/BgParticles.astro';
-import BgGrid from '../components/BgGrid.astro';
+import '../../assets/css/main.css'
+import BgParticles from '../components/BgParticles.astro'
+import BgGrid from '../components/BgGrid.astro'
+import HeadFavicon from './HeadFavicon.astro'
 
 interface Props {
 	title?: string
@@ -10,12 +11,16 @@ interface Props {
   hasGrid?: boolean
 }
 
-const { title = "Home", hasParticles = true, hasGrid = true } = Astro.props;
+const { title = "Home", hasParticles = true, hasGrid = true } = Astro.props
 
 const baseTitle = 'Alexis Pelé'
 const renderedTitle = `${title} · ${baseTitle}`
 
-const { description = baseTitle } = Astro.props;
+const { description = baseTitle } = Astro.props
+
+const authorName = "Alexis Pelé"
+const authorUsername = "AlexisNP"
+const websiteDomain = "alexcreates.fr"
 ---
 
 <!DOCTYPE html>
@@ -33,50 +38,20 @@ const { description = baseTitle } = Astro.props;
     <meta property="og:description" content={description} />
     <meta name="twitter:description" content={description} />
 
-    <meta property="author" content="Alexis Pelé" />
-    <meta property="og:author" content="Alexis Pelé" />
-    <meta property="og:author:username" content="AlexisNP" />
+    <meta property="author" content={authorName} />
+    <meta property="og:author" content={authorName} />
+    <meta property="og:author:username" content={authorUsername} />
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
 
-    <link rel="apple-touch-icon" sizes="57x57" href="/favicon/light/apple-icon-57x57.png" media="(prefers-color-scheme: light)">
-    <link rel="apple-touch-icon" sizes="60x60" href="/favicon/light/apple-icon-60x60.png" media="(prefers-color-scheme: light)">
-    <link rel="apple-touch-icon" sizes="72x72" href="/favicon/light/apple-icon-72x72.png" media="(prefers-color-scheme: light)">
-    <link rel="apple-touch-icon" sizes="76x76" href="/favicon/light/apple-icon-76x76.png" media="(prefers-color-scheme: light)">
-    <link rel="apple-touch-icon" sizes="114x114" href="/favicon/light/apple-icon-114x114.png" media="(prefers-color-scheme: light)">
-    <link rel="apple-touch-icon" sizes="120x120" href="/favicon/light/apple-icon-120x120.png" media="(prefers-color-scheme: light)">
-    <link rel="apple-touch-icon" sizes="144x144" href="/favicon/light/apple-icon-144x144.png" media="(prefers-color-scheme: light)">
-    <link rel="apple-touch-icon" sizes="152x152" href="/favicon/light/apple-icon-152x152.png" media="(prefers-color-scheme: light)">
-    <link rel="apple-touch-icon" sizes="180x180" href="/favicon/light/apple-icon-180x180.png" media="(prefers-color-scheme: light)">
-    <link rel="icon" type="image/png" sizes="192x192"  href="/favicon/light/android-icon-192x192.png" media="(prefers-color-scheme: light)">
-    <link rel="icon" type="image/png" sizes="32x32" href="/favicon/light/favicon-32x32.png" media="(prefers-color-scheme: light)">
-    <link rel="icon" type="image/png" sizes="96x96" href="/favicon/light/favicon-96x96.png" media="(prefers-color-scheme: light)">
-    <link rel="icon" type="image/png" sizes="16x16" href="/favicon/light/favicon-16x16.png" media="(prefers-color-scheme: light)">
-    <link rel="manifest" href="/favicon/light/manifest.json" media="(prefers-color-scheme: light)">
-    <meta name="msapplication-TileImage" content="/favicon/light/ms-icon-144x144.png" media="(prefers-color-scheme: light)">
-
-    <link rel="apple-touch-icon" sizes="57x57" href="/favicon/dark/apple-icon-57x57.png" media="(prefers-color-scheme: dark)">
-    <link rel="apple-touch-icon" sizes="60x60" href="/favicon/dark/apple-icon-60x60.png" media="(prefers-color-scheme: dark)">
-    <link rel="apple-touch-icon" sizes="72x72" href="/favicon/dark/apple-icon-72x72.png" media="(prefers-color-scheme: dark)">
-    <link rel="apple-touch-icon" sizes="76x76" href="/favicon/dark/apple-icon-76x76.png" media="(prefers-color-scheme: dark)">
-    <link rel="apple-touch-icon" sizes="114x114" href="/favicon/dark/apple-icon-114x114.png" media="(prefers-color-scheme: dark)">
-    <link rel="apple-touch-icon" sizes="120x120" href="/favicon/dark/apple-icon-120x120.png" media="(prefers-color-scheme: dark)">
-    <link rel="apple-touch-icon" sizes="144x144" href="/favicon/dark/apple-icon-144x144.png" media="(prefers-color-scheme: dark)">
-    <link rel="apple-touch-icon" sizes="152x152" href="/favicon/dark/apple-icon-152x152.png" media="(prefers-color-scheme: dark)">
-    <link rel="apple-touch-icon" sizes="180x180" href="/favicon/dark/apple-icon-180x180.png" media="(prefers-color-scheme: dark)">
-    <link rel="icon" type="image/png" sizes="192x192"  href="/favicon/dark/android-icon-192x192.png" media="(prefers-color-scheme: dark)">
-    <link rel="icon" type="image/png" sizes="32x32" href="/favicon/dark/favicon-32x32.png" media="(prefers-color-scheme: dark)">
-    <link rel="icon" type="image/png" sizes="96x96" href="/favicon/dark/favicon-96x96.png" media="(prefers-color-scheme: dark)">
-    <link rel="icon" type="image/png" sizes="16x16" href="/favicon/dark/favicon-16x16.png" media="(prefers-color-scheme: dark)">
-    <link rel="manifest" href="/favicon/dark/manifest.json" media="(prefers-color-scheme: dark)">
-    <meta name="msapplication-TileImage" content="/favicon/dark/ms-icon-144x144.png" media="(prefers-color-scheme: dark)">
+    <HeadFavicon />
 
     <meta name="msapplication-TileColor" content="#065f46">
     <meta name="theme-color" content="#065f46">
     <meta name="color-scheme" content="dark light" />
 
-    <meta property="og:site_name" content="alexcreates.fr" />
-    <meta name="twitter:domain" content="alexcreates.fr" />
+    <meta property="og:site_name" content={websiteDomain} />
+    <meta name="twitter:domain" content={websiteDomain} />
 
     <meta property="og:type" content="website" />
 
