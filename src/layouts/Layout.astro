@@ -1,12 +1,16 @@
 --- 
 import '../../assets/css/main.css';
+import BgParticles from '../components/BgParticles.astro';
+import BgGrid from '../components/BgGrid.astro';
 
 interface Props {
-	title?: string;
+	title?: string
   description?: string
+  hasParticles?: boolean
+  hasGrid?: boolean
 }
 
-const { title = "Home" } = Astro.props;
+const { title = "Home", hasParticles = true, hasGrid = true } = Astro.props;
 
 const baseTitle = 'Alexis Pelé'
 const renderedTitle = `${title} · ${baseTitle}`
@@ -106,7 +110,15 @@ const { description = baseTitle } = Astro.props;
     </script>
 	</head>
 
-	<body class="bg-slate-950 text-white">
+	<body class="relative bg-slate-950 text-white overflow-hidden">
     <slot />
+
+    {hasParticles &&
+      <BgParticles />
+    }
+
+    {hasGrid &&
+      <BgGrid />
+    }
 	</body>
 </html>
