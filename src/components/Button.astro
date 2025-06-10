@@ -1,0 +1,103 @@
+---
+interface Props {
+  variant?: 'primary' | 'secondary' | 'tertiary';
+  href?: string;
+  glow?: boolean;
+}
+
+const { variant = 'secondary', glow = false, href } = Astro.props;
+---
+
+{href && (
+  <a
+    class="relative py-2 px-7 flex items-center gap-[0.5ch] rounded-[100vmax] text-[1em] transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4"
+    href={href}
+    target="_blank"
+    class:list={
+      [
+        {
+          'glow': glow,
+          'bg-emerald-900 hover:bg-emerald-800 focus-visible:outline-emerald-400': variant === 'primary',
+          'bg-slate-900 hover:bg-slate-800 focus-visible:outline-slate-100': variant === 'secondary'
+        }
+      ]
+    }
+  >
+    <slot />
+  </a>
+)}
+{!href && (
+  <button
+    class="relative py-2 px-7 flex items-center gap-[0.5ch] rounded-[100vmax] text-[1em] transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4"
+    class:list={
+      [
+        {
+          'glow': glow,
+          'bg-emerald-900 hover:bg-emerald-800 focus-visible:outline-emerald-400': variant === 'primary',
+          'bg-slate-900 hover:bg-slate-800 focus-visible:outline-slate-100': variant === 'secondary'
+        }
+      ]
+    }
+  >
+    <slot />
+  </button>
+)}
+
+<style lang="scss">
+:root {
+  --glow-shade-1: #022c22;
+  --glow-shade-2: #34d399;
+  --glow-shade-3: #ecfdf5;
+}
+
+@property --gradient-angle {
+  syntax: "<angle>";
+  initial-value: 0deg;
+  inherits: false;
+}
+
+.glow {
+  &::before,
+  &::after {
+    content: "";
+    position: absolute;
+    inset: -1px;
+    z-index: -1;
+    background: conic-gradient(
+      from var(--gradient-angle),
+      var(--glow-shade-1),
+      var(--glow-shade-1),
+      var(--glow-shade-1),
+      var(--glow-shade-1),
+      var(--glow-shade-1),
+      var(--glow-shade-1),
+      var(--glow-shade-1),
+      var(--glow-shade-2),
+      var(--glow-shade-3),
+      var(--glow-shade-2),
+      var(--glow-shade-1),
+      var(--glow-shade-1),
+      var(--glow-shade-1),
+      var(--glow-shade-1),
+      var(--glow-shade-1),
+      var(--glow-shade-1),
+      var(--glow-shade-1)
+    );
+    border-radius: inherit;
+    animation: glow-rotation 4.2s cubic-bezier(0.785, 0.135, 0.15, 0.86) infinite;
+  }
+
+  &::after {
+    filter: blur(3.5rem);
+  }
+
+  @keyframes glow-rotation {
+    0% {
+      --gradient-angle: -180deg;
+    }
+    100% {
+      --gradient-angle: 180deg;
+    }
+  }
+}
+</style>

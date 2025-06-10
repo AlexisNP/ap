@@ -1,0 +1,21 @@
+<div class="wrapper h-full w-full absolute inset-0 isolate -z-10 opacity-90">
+  <div id="particles" class="h-full w-full absolute inset-0 -z-20"></div>
+</div>
+
+<script is:inline src="/js/particles.min.js"></script>
+
+<script is:inline>
+  particlesJS.load('particles', '/js/particlesjs-config.json');
+</script>
+
+<style lang="scss">
+  .wrapper {
+    &::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      z-index: -10;
+      background: radial-gradient(circle, #020617 2%, transparent 20%);
+    }
+  }
+</style>
