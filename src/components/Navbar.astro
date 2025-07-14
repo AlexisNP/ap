@@ -1,0 +1,44 @@
+---
+interface MenuItem {
+  label: string
+  to: string
+}
+
+const menuItems: MenuItem[] = [
+  {
+    label: "Home",
+    to: "/"
+  },
+  {
+    label: "Projects",
+    to: "/projects"
+  }
+]
+
+interface Props {
+  floating?: boolean
+}
+
+const { floating = false } = Astro.props
+---
+
+<header
+  class:list={
+    {
+      "absolute top-12 left-12 z-10": floating,
+      "pt-12 pb-6": !floating
+    }
+  }
+>
+  <nav aria-labelledby="Main pages">
+    <menu class="flex gap-12">
+      {menuItems.map((item) => (
+        <li>
+          <a href={item.to} class="py-2">
+            {item.label}
+          </a>
+        </li>
+      ))}
+    </menu>
+  </nav>
+</header>

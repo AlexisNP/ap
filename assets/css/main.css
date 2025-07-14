@@ -84,3 +84,17 @@
     font-weight: 300;
   }
 }
+
+@layer base {
+  .link,
+  .content a {
+    color: var(--color-emerald-500);
+    text-decoration: none;
+    text-underline-offset: .25rem;
+
+    &:hover {
+      color: var(--color-emerald-300);
+      text-decoration: underline;
+    }
+  }
+}

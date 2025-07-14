@@ -1,23 +1,46 @@
 ---
+type HeadingType = 'h0' | 'h1' | 'h2' | 'h3'
+
 interface Props {
-	tag: 'h1' | 'h2' | 'h3';
+	tag: HeadingType
+  style?: HeadingType
 }
 
-const { tag = "h1" } = Astro.props;
+const { tag = "h1" } = Astro.props
+const { style = tag } = Astro.props
+
+function renderClasses(style: HeadingType) {
+  switch (style) {
+    case 'h0':
+      return "font-heading text-4xl md:text-6xl font-bold"
+    case 'h1':
+    default:
+      return "font-heading text-2xl md:text-4xl font-bold"
+    case 'h2':
+      return "font-heading text-xl md:text-3xl font-bold"
+    case 'h3':
+      return "font-heading text-lg md:text-xl font-bold"
+  }
+}
 ---
 
+{tag === 'h0' &&
+  <h1 class:list={renderClasses(style)}>
+    <slot name="default" />
+  </h1>
+}
 {tag === 'h1' &&
-  <h1 class="font-heading text-4xl md:text-5xl font-bold">
+  <h1 class:list={renderClasses(style)}>
     <slot name="default" />
   </h1>
 }
 {tag === 'h2' &&
-  <h2 class="font-heading text-xl md:text-3xl font-bold">
+  <h2 class:list={renderClasses(style)}>
     <slot name="default" />
   </h2>
 }
 {tag === 'h3' &&
-  <h3 class="font-heading md:text-xl font-bold">
+  <h3 class:list={renderClasses(style)}>
     <slot name="default" />
   </h3>
 }
