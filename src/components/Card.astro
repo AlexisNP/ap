@@ -5,9 +5,10 @@ interface Props {
   imageCover?: string
   imageHeight?: number
   imageWidth?: number
+  imageLoading?: "lazy" | "eager"
 }
 
-const { imageCover, imageHeight, imageWidth } = Astro.props
+const { imageCover, imageHeight, imageWidth, imageLoading = "lazy" } = Astro.props
 ---
 
 <article
@@ -19,7 +20,7 @@ const { imageCover, imageHeight, imageWidth } = Astro.props
 >
   {imageCover && imageHeight && imageWidth &&
     <figure class="w-full">
-      <Image src={imageCover} height={imageHeight} width={imageWidth} alt={""} loading="lazy" class="w-full h-full object-center" />
+      <Image src={imageCover} height={imageHeight} width={imageWidth} alt={""} loading={imageLoading} class="w-full h-full object-center" />
     </figure>
   }
 
@@ -35,7 +36,7 @@ const { imageCover, imageHeight, imageWidth } = Astro.props
       <slot name="heading" />
     </header>
 
-    <div class="body text-slate-400 flow text-[.95em]">
+    <div class="body text-slate-400 flow text-[.9em]">
       <slot name="body" />
     </div>
   </div>
