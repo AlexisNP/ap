@@ -7,34 +7,34 @@ interface MenuItem {
 const menuItems: MenuItem[] = [
   {
     label: "Home",
-    to: "/"
+    to: ""
   },
   {
     label: "Projects",
-    to: "/projects"
+    to: "projects"
   }
 ]
 
-interface Props {
-  floating?: boolean
-}
-
-const { floating = false } = Astro.props
+const activeSegment = Astro.url.pathname.split("/")[1]
 ---
 
 <header
-  class:list={
-    {
-      "absolute top-12 left-12 z-10": floating,
-      "pt-12 pb-6": !floating
-    }
-  }
+  class="absolute top-0 left-0 pt-6 w-full z-10"
 >
-  <nav aria-labelledby="Main pages">
-    <menu class="flex gap-12">
+  <nav class="container text-[.8em]" aria-labelledby="Main pages">
+    <menu class="px-6 py-2 bg-slate-900/50 rounded-xl backdrop-blur flex gap-6">
       {menuItems.map((item) => (
         <li>
-          <a href={item.to} class="py-2">
+          <a
+            href={"/" + item.to}
+            class="block py-2 underline-offset-4 hover:underline"
+            class:list={
+              {
+                "text-primary/80 hover:text-primary": activeSegment === item.to,
+                "text-body/80 hover:text-body": activeSegment !== item.to
+              }
+            }
+          >
             {item.label}
           </a>
         </li>

@@ -98,3 +98,14 @@
     }
   }
 }
+
+@theme {
+    --color-body: var(--color-slate-50);
+    --color-background: var(--color-slate-950);
+    --color-primary: var(--color-emerald-500)
+}
+
+@utility container {
+    padding-inline: 1rem;
+    margin-inline: auto;
+}
