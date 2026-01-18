@@ -36,7 +36,7 @@ const { imageCover, imageHeight, imageWidth, imageLoading = "lazy" } = Astro.pro
       <slot name="heading" />
     </header>
 
-    <div class="body text-slate-400 flow text-[.9em]">
+    <div class="body text-slate-400 flow text-[.9em] max-h-48 overflow-y-auto">
       <slot name="body" />
     </div>
   </div>

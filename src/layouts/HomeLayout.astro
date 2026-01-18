@@ -84,16 +84,16 @@ const websiteDomain = "alexcreates.fr"
 	</head>
 
 	<body class="h-screen relative bg-slate-950 text-white px-12 overflow-hidden">
-    <Navbar floating />
+        <Navbar floating />
 
-    <slot />
+        <slot />
 
-    {hasParticles &&
-      <BgParticles />
-    }
+        {hasParticles &&
+            <BgParticles />
+        }
 
-    {hasGrid &&
-      <BgGrid />
-    }
+        {hasGrid &&
+            <BgGrid />
+        }
 	</body>
 </html>
