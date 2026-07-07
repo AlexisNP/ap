@@ -87,17 +87,17 @@ const websiteDomain = "alexcreates.fr"
     </script>
 	</head>
 
-	<body class="h-screen relative bg-background text-body px-12 overflow-hidden">
-        <Navbar />
+	<body class="h-screen relative bg-background text-body px-3 md:px-12 overflow-hidden">
+    <Navbar />
 
-        <slot />
+    <slot />
 
-        <!-- {hasParticles &&
-          <BgParticles />
-        } -->
+    <!-- {hasParticles &&
+      <BgParticles />
+    } -->
 
-        {hasGrid &&
-          <BgGrid />
-        }
+    {hasGrid &&
+      <BgGrid />
+    }
 	</body>
 </html>

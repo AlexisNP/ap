@@ -28,7 +28,7 @@ const onHome = Astro.url.pathname === "/"
           class="block py-2 underline-offset-4 hover:underline text-body/80 hover:text-body"
           class:list={
             {
-              "text-primary/80 hover:text-primary": onHome,
+              "text-primary/90 hover:text-primary": onHome,
               "text-body/80 hover:text-body": !onHome
             }
           }
@@ -44,7 +44,7 @@ const onHome = Astro.url.pathname === "/"
             class="block py-2 underline-offset-4 hover:underline text-body/80 hover:text-body"
             class:list={
               {
-                "text-primary/80 hover:text-primary": Astro.url.pathname.startsWith(link.to),
+                "text-primary/90 hover:text-primary": Astro.url.pathname.startsWith(link.to),
                 "text-body/80 hover:text-body": !Astro.url.pathname.startsWith(link.to)
               }
             }
