@@ -30,12 +30,118 @@ const websiteDomain = "alexcreates.fr"
 <!DOCTYPE html>
 <html lang="en">
 	<head>
+    <title>{ renderedTitle }</title>
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@type": "Person",
+            "email": "contact@alexcreates.fr",
+            "jobTitle": "Front-end engineer",
+            "name": "Alexis Pelé",
+            "url": "https://alexcreates.fr/",
+            "description": "Front-end engineer specializing in TypeScript and Vue.js, building performant, accessible web applications.",
+            "sameAs": [
+              "https://gitea.peacock-wyrm.ts.net/Joururi",
+              "https://fr.linkedin.com/in/alexis-pel%C3%A9-b27958159",
+              "https://github.com/AlexisNP"
+            ],
+            "knowsAbout": [
+              "TypeScript",
+              "Vue.js",
+              "Nuxt.js",
+              "JavaScript",
+              "Front-End Development",
+              "Web Performance Optimization",
+              "REST APIs",
+              "Pinia",
+              "Vite",
+              "Docker",
+              "Docker Composer",
+              "Angular",
+              "PHP",
+              "Wordpress",
+              "Aria",
+              "Accessibility"
+            ],
+            "knowsLanguage": [
+              {
+                "@type": "Language",
+                "name": "French",
+                "alternateName": "fr"
+              },
+              {
+                "@type": "Language",
+                "name": "English",
+                "alternateName": "en"
+              }
+            ],
+            "worksFor": {
+              "@type": "Organization",
+              "name": "Agence Polux",
+              "url": "https://agence-polux.fr/"
+            },
+            "nationality": {
+              "@type": "Country",
+              "name": "France"
+            },
+            "pronouns": "he/him"
+          },
+          {
+            "@type": "ItemList",
+            "@id": "https://alexcreates.fr/#projects",
+            "name": "Featured Projects",
+            "itemListElement": [
+              {
+                "@type": "ListItem",
+                "position": 1,
+                "item": {
+                  "@type": "CreativeWork",
+                  "name": "Leim Maps",
+                  "description": "A Vue 3 + TypeScript application for X.",
+                  "url": "https://maps.alexcreates.fr",
+                  "sameAs": "https://gitea.peacock-wyrm.ts.net/Joururi/leim-maps",
+                  "image": "https://alexcreates.fr/images/project-one.jpg",
+                  "creator": {
+                    "@id": "https://alexcreates.fr/#person"
+                  },
+                  "keywords": "Vue 3, TypeScript, Astro, Vite, Leaflet"
+                }
+              }
+            ]
+          },
+          {
+            "@type": "WebSite",
+            "@id": "https://alexcreates.fr/#website",
+            "url": "https://alexcreates.fr",
+            "name": "Alexis Pelé | Front-End Engineer",
+            "description": "Portfolio of Alexis Pelé, a front-end engineer.",
+            "publisher": {
+              "@id": "https://alexcreates.fr/#person"
+            },
+            "inLanguage": "en-US"
+          },
+          {
+            "@type": "BreadcrumbList",
+            "@id": "https://alexcreates.fr/#breadcrumb",
+            "itemListElement": [
+              {
+                "@type": "ListItem",
+                "position": 1,
+                "name": "Home",
+                "item": "https://alexcreates.fr/"
+              }
+            ]
+          }
+        ]
+      }
+    </script>
+
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="canonical" href={Astro.url} />
-		<meta name="generator" content={ Astro.generator } />
 
-		<title>{ renderedTitle }</title>
     <meta property="og:title" content={renderedTitle} />
 
     <meta name="description" content={description} />
@@ -56,35 +162,6 @@ const websiteDomain = "alexcreates.fr"
     <meta name="twitter:domain" content={websiteDomain} />
 
     <meta property="og:type" content="website" />
-
-    <script type="application/ld+json">
-      {
-        "@context": "https://schema.org",
-        "@type": "Person",
-        "email": "mailto:contact@alexcreates.fr",
-        "jobTitle": "Web developer",
-        "name": "Alexis",
-        "familyName": "Pelé",
-        "url": "https://alexcreates.fr/",
-        "nationality": {
-          "@type": "Country",
-          "name": "France"
-        },
-        "pronouns": "he/him",
-        "knowsLanguage": [
-          {
-            "@type": "Language",
-            "name": "French",
-            "alternateName": "fr"
-          },
-          {
-            "@type": "Language",
-            "name": "English",
-            "alternateName": "en"
-          }
-        ]
-      }
-    </script>
 	</head>
 
 	<body class="h-screen relative bg-background text-body px-3 md:px-12 overflow-hidden">
