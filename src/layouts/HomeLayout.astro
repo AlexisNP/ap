@@ -1,6 +1,6 @@
 ---
 import '../../assets/css/main.css'
-import BgParticles from '../components/BgParticles.astro'
+// import BgParticles from '../components/BgParticles.astro'
 import BgGrid from '../components/BgGrid.astro'
 import HeadFavicon from './HeadFavicon.astro'
 import Navbar from "../components/Navbar.astro";
@@ -11,7 +11,11 @@ interface Props {
   hasGrid?: boolean
 }
 
-const { title = "Home", hasParticles = false, hasGrid = false } = Astro.props
+const {
+  title = "Home",
+  // hasParticles = false,
+  hasGrid = false
+} = Astro.props
 
 const baseTitle = 'Alexis Pelé'
 const renderedTitle = `${title} · ${baseTitle}`
@@ -88,12 +92,12 @@ const websiteDomain = "alexcreates.fr"
 
         <slot />
 
-        {hasParticles &&
-            <BgParticles />
-        }
+        <!-- {hasParticles &&
+          <BgParticles />
+        } -->
 
         {hasGrid &&
-            <BgGrid />
+          <BgGrid />
         }
 	</body>
 </html>
