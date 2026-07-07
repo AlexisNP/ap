@@ -1,41 +1,55 @@
 ---
 interface MenuItem {
+  slug: string
   label: string
   to: string
 }
 
-const menuItems: MenuItem[] = [
-  {
-    label: "Home",
-    to: ""
-  },
-  {
-    label: "Projects",
-    to: "projects"
-  }
+const links: MenuItem[] = [
+  // {
+  //   label: "Projects",
+  //   slug: "projects",
+  //   to: "/projects"
+  // }
 ]
 
-const activeSegment = Astro.url.pathname.split("/")[1]
+const onHome = Astro.url.pathname === "/"
 ---
 
 <header
   class="absolute top-0 left-0 pt-6 w-full z-10"
 >
-  <nav class="container text-[.8em]" aria-labelledby="Main pages">
+  <nav class="container text-[.8em]" aria-label="Primary">
     <menu class="px-6 py-2 bg-slate-900/50 rounded-xl backdrop-blur flex gap-6">
-      {menuItems.map((item) => (
+      <li>
+        <a
+          href="/"
+          aria-current={onHome ? "page" : "false"}
+          class="block py-2 underline-offset-4 hover:underline text-body/80 hover:text-body"
+          class:list={
+            {
+              "text-primary/80 hover:text-primary": onHome,
+              "text-body/80 hover:text-body": !onHome
+            }
+          }
+        >
+          Home
+        </a>
+      </li>
+      {links.map((link) => (
         <li>
           <a
-            href={"/" + item.to}
-            class="block py-2 underline-offset-4 hover:underline"
+            href={link.to}
+            aria-current={ Astro.url.pathname.startsWith(link.to) ? 'page' : 'false' }
+            class="block py-2 underline-offset-4 hover:underline text-body/80 hover:text-body"
             class:list={
               {
-                "text-primary/80 hover:text-primary": activeSegment === item.to,
-                "text-body/80 hover:text-body": activeSegment !== item.to
+                "text-primary/80 hover:text-primary": Astro.url.pathname.startsWith(link.to),
+                "text-body/80 hover:text-body": !Astro.url.pathname.startsWith(link.to)
               }
             }
           >
-            {item.label}
+            {link.label}
           </a>
         </li>
       ))}
