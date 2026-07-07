@@ -1,6 +1,6 @@
 ---
 import '../../assets/css/main.css'
-import BgParticles from '../components/BgParticles.astro'
+// import BgParticles from '../components/BgParticles.astro'
 import BgGrid from '../components/BgGrid.astro'
 import HeadFavicon from './HeadFavicon.astro'
 import Navbar from "../components/Navbar.astro";
@@ -11,7 +11,11 @@ interface Props {
   hasGrid?: boolean
 }
 
-const { title = "Home", hasParticles = false, hasGrid = false } = Astro.props
+const {
+  title = "Home",
+  // hasParticles = false,
+  hasGrid = false
+} = Astro.props
 
 const baseTitle = 'Alexis Pelé'
 const renderedTitle = `${title} · ${baseTitle}`
@@ -26,33 +30,7 @@ const websiteDomain = "alexcreates.fr"
 <!DOCTYPE html>
 <html lang="en">
 	<head>
-		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="canonical" href={Astro.url} />
-		<meta name="generator" content={ Astro.generator } />
-
-		<title>{ renderedTitle }</title>
-    <meta property="og:title" content={renderedTitle} />
-
-    <meta name="description" content={description} />
-    <meta property="og:description" content={description} />
-    <meta name="twitter:description" content={description} />
-
-    <meta property="author" content={authorName} />
-    <meta property="og:author" content={authorName} />
-    <meta property="og:author:username" content={authorUsername} />
-
-    <HeadFavicon />
-
-    <meta name="msapplication-TileColor" content="#065f46">
-    <meta name="theme-color" content="#065f46">
-    <meta name="color-scheme" content="dark light" />
-
-    <meta property="og:site_name" content={websiteDomain} />
-    <meta name="twitter:domain" content={websiteDomain} />
-
-    <meta property="og:type" content="website" />
-
+    <title>{ renderedTitle }</title>
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
@@ -85,8 +63,7 @@ const websiteDomain = "alexcreates.fr"
               "PHP",
               "Wordpress",
               "Aria",
-              "Accessibility",
-              "Tailscale"
+              "Accessibility"
             ],
             "knowsLanguage": [
               {
@@ -160,18 +137,41 @@ const websiteDomain = "alexcreates.fr"
         ]
       }
     </script>
+
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="canonical" href={Astro.url} />
+
+    <meta property="og:title" content={renderedTitle} />
+
+    <meta name="description" content={description} />
+    <meta property="og:description" content={description} />
+    <meta name="twitter:description" content={description} />
+
+    <meta property="author" content={authorName} />
+    <meta property="og:author" content={authorName} />
+    <meta property="og:author:username" content={authorUsername} />
+
+    <HeadFavicon />
+
+    <meta name="msapplication-TileColor" content="#065f46">
+    <meta name="theme-color" content="#065f46">
+    <meta name="color-scheme" content="dark light" />
+
+    <meta property="og:site_name" content={websiteDomain} />
+    <meta name="twitter:domain" content={websiteDomain} />
+
+    <meta property="og:type" content="website" />
 	</head>
 
-	<body class="h-screen relative bg-slate-950 text-white">
+	<body class="h-screen relative bg-background text-body px-3 md:px-12 overflow-hidden">
     <Navbar />
 
-    <div class="container pt-28">
-      <slot />
-    </div>
+    <slot />
 
-    {hasParticles &&
+    <!-- {hasParticles &&
       <BgParticles />
-    }
+    } -->
 
     {hasGrid &&
       <BgGrid />

@@ -10,7 +10,7 @@ const { variant = 'secondary', glow = false, href } = Astro.props;
 
 {href && (
   <a
-    class="relative py-2 px-7 flex items-center gap-[0.5ch] rounded-[100vmax] text-[1em] transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4"
+    class="relative py-2 px-7 flex items-center gap-[0.5ch] rounded-[100vmax] text-[1em] transition-colors focus-visible:outline-solid focus-visible:outline-2 focus-visible:outline-offset-4"
     href={href}
     target="_blank"
     class:list={
@@ -28,7 +28,7 @@ const { variant = 'secondary', glow = false, href } = Astro.props;
 )}
 {!href && (
   <button
-    class="relative py-2 px-7 flex items-center gap-[0.5ch] rounded-[100vmax] text-[1em] transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4"
+    class="relative py-2 px-7 flex items-center gap-[0.5ch] rounded-[100vmax] text-[1em] transition-colors focus-visible:outline-solid focus-visible:outline-2 focus-visible:outline-offset-4"
     class:list={
       [
         {

@@ -1,7 +1,50 @@
-<div class="p-3 text-slate-200 bg-slate-900 border-[1px] border-slate-800 rounded">
-  <div class="flex items-center gap-2">
-    <slot name="icon" />
+---
+import { Image } from 'astro:assets'
 
-    <slot name="heading" />
+interface Props {
+  imageCover?: string
+  imageHeight?: number
+  imageWidth?: number
+  imageLoading?: "lazy" | "eager"
+}
+
+const { imageCover, imageHeight, imageWidth, imageLoading = "lazy" } = Astro.props
+---
+
+<article
+  class="card text-slate-200 bg-slate-900 border border-slate-800 rounded-2xl"
+  class:list={{
+    "p-6": !imageCover,
+    "overflow-hidden": imageCover
+  }}
+>
+  {imageCover && imageHeight && imageWidth &&
+    <figure class="w-full">
+      <Image src={imageCover} height={imageHeight} width={imageWidth} alt={""} loading={imageLoading} class="w-full h-full object-center" />
+    </figure>
+  }
+
+  <div
+    class="grid gap-3"
+    class:list={{
+      "p-6": imageCover
+    }}
+  >
+    <header class="flex items-center gap-2">
+      <slot name="icon" />
+
+      <slot name="heading" />
+    </header>
+
+    <div class="body text-slate-400 flow text-[.9em] max-h-48 overflow-y-auto">
+      <slot name="body" />
+    </div>
   </div>
-</div>
+</article>
+
+<style lang="scss">
+.card {
+  background: hsl(from var(--color-slate-900) h s l / 0.25);
+  backdrop-filter: blur(.5rem);
+}
+</style>
